@@ -24,4 +24,17 @@ public class SingleTon {
 
         Assertions.assertThat(memberService1).isNotSameAs(memberService2); // 객체 두개가 다름
     }
+
+    @Test
+    @DisplayName("싱글톤 패턴을 적용한 객체 사용")
+    void singleTonServiceTest(){
+
+        SingleTonService singleTonService1 = SingleTonService.getInstance();
+        SingleTonService singleTonService2 = SingleTonService.getInstance();
+
+        System.out.println("singletonservice1 = " + singleTonService1);
+        System.out.println("singletonservice2 = " + singleTonService2);
+
+        Assertions.assertThat(singleTonService1).isSameAs(singleTonService2);
+    }
 }
