@@ -10,7 +10,8 @@ import org.springframework.context.annotation.Configuration;
 
 // InitializingBean - afterPropertiesSet() 빈 생성 후 호출
 // DisposableBean   - destroy() close() 후 호출
-public class NetworkClient implements InitializingBean, DisposableBean {
+//public class NetworkClient implements InitializingBean, DisposableBean {
+public class NetworkClient {
 
     private String url;
 
@@ -36,17 +37,26 @@ public class NetworkClient implements InitializingBean, DisposableBean {
     public void disconnect(){
         System.out.println("disconnect: " + url );
     }
-
-    @Override
-    public void afterPropertiesSet() throws Exception {
-        System.out.println("NetworkClient.afterPropertiesSet");
+    public void init(){
+        System.out.println("NetworkClient.init");
         connect();
-        call("초기화 연결 메시지");        
+        call("초기화 연결 메시지");
     }
 
-    @Override
-    public void destroy() throws Exception {
-        System.out.println("NetworkClient.destroy");
+    public void close(){
+        System.out.println("NetworkClient.close");
         disconnect();
     }
+//    @Override
+//    public void afterPropertiesSet() throws Exception {
+//        System.out.println("NetworkClient.afterPropertiesSet");
+//        connect();
+//        call("초기화 연결 메시지");
+//    }
+//
+//    @Override
+//    public void destroy() throws Exception {
+//        System.out.println("NetworkClient.destroy");
+//        disconnect();
+//    }
 }
